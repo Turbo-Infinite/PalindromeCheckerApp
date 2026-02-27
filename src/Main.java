@@ -9,18 +9,20 @@ public class Main {
         String input = sc.next();
         System.out.print("Is it a palindrome? : ");
         int n = input.length();
-        char[] ar = input.toCharArray();
-        int start = 0, end = n-1;
-        boolean isPalindrome = true;
-        while(start<end)
+        Stack<Character> stack = new Stack<>();
+        for(char c : input.toCharArray())
         {
-            if(ar[start]!=ar[end])
+            stack.push(c);
+        }
+        boolean isPalindrome = true;
+        for(char c : input.toCharArray())
+        {
+            char ch = stack.pop();
+            if(ch!=c)
             {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
         if(isPalindrome==true)
         {
