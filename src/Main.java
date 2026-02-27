@@ -9,16 +9,17 @@ public class Main {
         String input = sc.next();
         System.out.print("Is it a palindrome? : ");
         int n = input.length();
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
         for(char c : input.toCharArray())
         {
             stack.push(c);
+            queue.add(c);
         }
         boolean isPalindrome = true;
-        for(char c : input.toCharArray())
+        while(!queue.isEmpty())
         {
-            char ch = stack.pop();
-            if(ch!=c)
+            if(stack.pop()!=queue.remove())
             {
                 isPalindrome = false;
                 break;
