@@ -9,13 +9,20 @@ public class Main {
         String input = sc.next();
         System.out.print("Is it a palindrome? : ");
         int n = input.length();
-//        boolean pal = true;
-        String rev = "";
-        for(int x=n-1; x>=0; x--)
+        char[] ar = input.toCharArray();
+        int start = 0, end = n-1;
+        boolean isPalindrome = true;
+        while(start<end)
         {
-            rev += input.charAt(x);
+            if(ar[start]!=ar[end])
+            {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
-        if(rev.equalsIgnoreCase(input))
+        if(isPalindrome==true)
         {
             System.out.println("true");
         }
