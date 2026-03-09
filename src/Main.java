@@ -7,30 +7,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Input text: ");
         String input = sc.next();
-        System.out.print("Is it a palindrome? : ");
-        int n = input.length();
-        if(check(input,0,n-1)==true)
-        {
-            System.out.println("true");
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        // Step 2: Palindrome check
+        boolean isPalindrome = true;
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
         }
-        else
-        {
-            System.out.println("false");
-        }
-    }
-    private static boolean check(String s, int start, int end)
-    {
-        if(start==end)
-        {
-            return true;
-        }
-        else if (s.charAt(start)!=s.charAt(end))
-        {
-            return false;
-        }
-        else
-        {
-            return check(s,start+1,end-1);
-        }
+
+        // Step 3: Output result
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
