@@ -1,25 +1,58 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import java.util.*;
-public class Main {
-    public static void main(String[] args)
-    {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Input text: ");
-        String input = sc.next();
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+import java.util.Scanner;
 
-        // Step 2: Palindrome check
-        boolean isPalindrome = true;
-        for (int i = 0; i < normalized.length() / 2; i++) {
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
+class Main {
+
+    public boolean isPalindrome(String input) {
+
+        if (input == null) {
+            return false;
         }
 
-        // Step 3: Output result
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        int start = 0;
+        int end = input.length() - 1;
+
+        while (start < end) {
+
+            while (start < end && !Character.isLetterOrDigit(input.charAt(start))) {
+                start++;
+            }
+
+            while (start < end && !Character.isLetterOrDigit(input.charAt(end))) {
+                end--;
+            }
+
+            if (Character.toLowerCase(input.charAt(start)) !=
+                    Character.toLowerCase(input.charAt(end))) {
+                return false;
+            }
+
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+}
+
+class PalindromeCheckerApp {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        Main service = new Main();
+
+        boolean result = service.isPalindrome(input);
+
+        if (result) {
+            System.out.println("Is it a Palindrome? : true");
+        } else {
+            System.out.println("Is it a Palindrome? : false");
+        }
+
+        sc.close();
     }
 }
